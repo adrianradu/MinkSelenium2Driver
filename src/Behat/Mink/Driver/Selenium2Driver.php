@@ -115,6 +115,23 @@ class Selenium2Driver extends CoreDriver
             $desiredCapabilities = self::getDefaultCapabilities();
         }
 
+        if (isset($_ENV['BROWSERSTACK_LOCAL'])) {
+            $desiredCapabilities['browserstack.local'] = true;
+            $desiredCapabilities['browserstack.localIdentifier'] = $_ENV['BROWSERSTACK_LOCALIDENTIFIER'];
+        }
+        
+        if (isset($_ENV['BROWSERSTACK_DEBUG'])) {
+            $desiredCapabilities['browserstack.debug'] = true;
+        }
+        
+        if (isset($_ENV['BROWSERSTACK_PROJECT'])) {
+            $desiredCapabilities['project'] = $_ENV['BROWSERSTACK_PROJECT'];
+        }
+        
+        if (isset($_ENV['BROWSERSTACK_BUILD'])) {
+            $desiredCapabilities['build'] = $_ENV['BROWSERSTACK_BUILD'];
+        }
+        
         if (isset($desiredCapabilities['firefox'])) {
             foreach ($desiredCapabilities['firefox'] as $capability => $value) {
                 switch ($capability) {
