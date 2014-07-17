@@ -292,6 +292,15 @@ class Selenium2Driver extends CoreDriver
      */
     public function start()
     {
+        if(isset($GLOBALS["BROWSERSTACK_FEATURE"]) && !isset($GLOBALS["BROWSERSTACK_SCENARIO"])) 
+        {
+            return;
+        }
+        
+        if(isset($GLOBALS["BROWSERSTACK_FEATURE"]) || isset($GLOBALS["BROWSERSTACK_SCENARIO"])) {
+            $this->desiredCapabilities['name'] = "Feature: {$GLOBALS["BROWSERSTACK_FEATURE"]} Scenario: {$GLOBALS["BROWSERSTACK_SCENARIO"]}";
+        }
+        
         try {
             $this->wdSession = $this->webDriver->session($this->browserName, $this->desiredCapabilities);
             $this->applyTimeouts();
