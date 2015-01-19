@@ -131,6 +131,19 @@ class Selenium2Driver extends CoreDriver
         if (isset($_ENV['BROWSERSTACK_BUILD'])) {
             $desiredCapabilities['build'] = $_ENV['BROWSERSTACK_BUILD'];
         }
+
+        if (isset($_ENV['BROWSERSTACK_LOCAL'])) {
+            if(!empty($desiredCapabilities['deviceType'])){
+                $desiredCapabilities['device'] = $desiredCapabilities['deviceType'];
+            }
+
+            if(empty($desiredCapabilities['deviceType'])){
+                if(!empty($desiredCapabilities['version'])){
+                    $desiredCapabilities['os_version'] = $desiredCapabilities['version'];
+                }
+            }
+
+        }
         
         if (isset($desiredCapabilities['firefox'])) {
             foreach ($desiredCapabilities['firefox'] as $capability => $value) {
