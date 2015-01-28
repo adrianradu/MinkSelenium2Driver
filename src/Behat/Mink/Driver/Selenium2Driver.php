@@ -137,10 +137,12 @@ class Selenium2Driver extends CoreDriver
                 $desiredCapabilities['device'] = $desiredCapabilities['deviceType'];
             }
 
-            if(empty($desiredCapabilities['deviceType'])){
-                if(!empty($desiredCapabilities['version'])){
-                    $desiredCapabilities['os_version'] = $desiredCapabilities['version'];
-                }
+            if(!empty($desiredCapabilities['name'])){
+                $desiredCapabilities['os'] = $desiredCapabilities['name'];
+            }
+
+            if(!empty($desiredCapabilities['version'])){
+                $desiredCapabilities['os_version'] = $desiredCapabilities['version'];
             }
 
         }
