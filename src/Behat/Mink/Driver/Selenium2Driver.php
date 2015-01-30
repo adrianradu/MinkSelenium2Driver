@@ -133,18 +133,24 @@ class Selenium2Driver extends CoreDriver
         }
 
         if (isset($_ENV['BROWSERSTACK_LOCAL'])) {
-            if(!empty($desiredCapabilities['deviceType'])){
+            if($desiredCapabilities['deviceType'] !== 'tablet'){
                 $desiredCapabilities['device'] = $desiredCapabilities['deviceType'];
-            }
+                if(isset($desiredCapabilities['name'])){
+                    unset($desiredCapabilities['name']);
+                }
+                if(isset($desiredCapabilities['version'])){
+                    unset($desiredCapabilities['version']);
+                }
 
-            if(!empty($desiredCapabilities['name'])){
-                $desiredCapabilities['os'] = $desiredCapabilities['name'];
-            }
+            }else{
+                if($desiredCapabilities['name'] !== 'Behat Test'){
+                    $desiredCapabilities['os'] = $desiredCapabilities['name'];
+                }
 
-            if(!empty($desiredCapabilities['version'])){
-                $desiredCapabilities['os_version'] = $desiredCapabilities['version'];
+                if($desiredCapabilities['version'] !== '9'){
+                    $desiredCapabilities['os_version'] = $desiredCapabilities['version'];
+                }
             }
-
         }
         
         if (isset($desiredCapabilities['firefox'])) {
