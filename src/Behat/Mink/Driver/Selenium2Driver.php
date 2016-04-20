@@ -151,6 +151,7 @@ class Selenium2Driver extends CoreDriver
                     $desiredCapabilities['os_version'] = $desiredCapabilities['version'];
                 }
             }
+            $desiredCapabilities['resolution'] = '1920x1080';
         }
         
         if (isset($desiredCapabilities['firefox'])) {
