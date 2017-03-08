@@ -122,6 +122,7 @@ class Selenium2Driver extends CoreDriver
         
         if (isset($_ENV['BROWSERSTACK_DEBUG'])) {
             $desiredCapabilities['browserstack.debug'] = true;
+            $desiredCapabilities['browserstack.selenium_version'] = "3.0.1";
         }
         
         if (isset($_ENV['BROWSERSTACK_PROJECT'])) {
