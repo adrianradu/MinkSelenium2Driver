@@ -216,7 +216,7 @@ class Selenium2Driver extends CoreDriver
             'name'              => 'Behat Test',
             'deviceOrientation' => 'portrait',
             'deviceType'        => 'tablet',
-            'selenium-version'  => '2.31.0'
+            'selenium-version'  => '3.5.3'
         );
     }
 
