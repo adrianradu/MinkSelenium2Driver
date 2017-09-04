@@ -114,6 +114,7 @@ class Selenium2Driver extends CoreDriver
         if (null === $desiredCapabilities) {
             $desiredCapabilities = self::getDefaultCapabilities();
         }
+        $desiredCapabilities['browserstack.noPageLoadTimeout'] = true;
 
         if (isset($_ENV['BROWSERSTACK_LOCAL'])) {
             $desiredCapabilities['browserstack.local'] = true;
